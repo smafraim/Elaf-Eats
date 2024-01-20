@@ -5,6 +5,14 @@ An online food ordering system
 
 "Elaf Eats" is a web-based food ordering system developed as a project to showcase software engineering skills. The system is built using Django, Python, JavaScript, Bootstrap, HTML, and CSS, with a strong emphasis on object-oriented programming principles. Additionally, it features an integrated foodbot powered by the RASA framework.
 
+## Updated Video
+
+
+
+https://github.com/smafraim/Elaf-Eats/assets/70313535/ae28667a-0efc-47a2-8d7d-2643bedc4725
+
+
+
 ## Technologies Used
 
 - **Django**: A high-level Python web framework for rapid development.
