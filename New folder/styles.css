@@ -1,0 +1,54 @@
+body {
+    background-color: rgb(74, 86, 139);
+    color: rgb(251, 251, 251);
+}
+
+.black-bg {
+    background-color: rgb(37, 37, 42);
+    word-spacing: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.middle-e-anbo{
+
+}
+
+.container{
+    background: fixed;
+    color: white;
+    margin-top: 50px;
+    align-items: center;
+    align-content: center;
+}
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+.dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+  }
+.btn-custom77 {
+    display: inline-block;
+    border: #514d17;
+    margin: 12px;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #070707; /* Change the background color */
+    color: rgb(145, 61, 61); /* Change the text color */
+}
+ 
+.drop-menu {
+  display: flexbox;
+  margin-right: 500px;
+  background-color: #070707;
+  padding: 10px 60px;
+}
+/* .mb-3 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 60px;
+} */

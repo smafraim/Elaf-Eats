@@ -1,0 +1,319 @@
+version: "3.1"
+
+nlu:
+
+- intent: request_food
+  examples: |
+    - Can I have some food to eat?
+    - I am hungry
+    - I want to eat
+    - I want to eat something
+    - I would like to order something
+    - I would like to order food
+    - I would like to order
+
+- intent: name
+  examples: |
+    - [afraim](name)
+    - my name is [afraim](name)
+    - [afraim](name) is my name
+    - [sohail](name) is my name
+    - [hajjajj](name)
+    - [syed md afraim](name)
+    - [syed afraim](name)
+    - [jhandar amar](name)
+
+- intent: email
+  examples: |
+    - [afraim_jd7@gmail.com](email)
+    - my email is [asfasf_38@yahoo.com](email)
+    - [jsudhf@gmail.com](email)
+    - my email is [asfasf_38@gmail.com](email)
+    - my email is [podsd@hotmail.com](email)
+
+- intent: enter_otp
+  examples: |
+    - [123456](otps)
+    - [654321](otps)
+    - [789012](otps)
+    - [345678](otps)
+    - [901234](otps)
+    - [567890](otps)
+    - [234567](otps)
+    - [876543](otps)
+    - [432109](otps)
+    - [210987](otps)
+    - [678901](otps)
+    - [109876](otps)
+    - [543210](otps)
+    - [321098](otps)
+    - [987654](otps)
+
+
+- intent: phone
+  examples: |
+    - my phone number is [01847384732](phones)
+    - my number is [01847384732](phones)
+    - my phone number is [01847384732](phones)
+    - [01847384732](phones)
+    - [01812345678](phones)
+    - [01898765432](phones)
+    - [01612345678](phones)
+    - [01698765432](phones)
+    - [01312345678](phones)
+    - [01398765432](phones)
+    - [01512345678](phones)
+    - [01598765432](phones)
+    - [01912345678](phones)
+    - [01998765432](phones)
+    - [01876543210](phones)
+    - [01676543210](phones)
+    - [01376543210](phones)
+    - [01847384732](phones) is my number
+    - [01847434332](phones) is my phone number
+    - [01822112732](phones) is my phone 
+    - [01632234732](phones) is my number
+    - [01234567892](phones)
+
+- intent: mymod_order_id
+  examples: |
+    - [123](mod_order_id)
+    - [456](mod_order_id)
+    - [789](mod_order_id)
+    - [012](mod_order_id)
+    - [539](mod_order_id)
+    - [678](mod_order_id)
+    - [901](mod_order_id)
+    - [234](mod_order_id)
+    - [567](mod_order_id)
+    - [890](mod_order_id)
+    - [163](mod_order_id)
+    - [436](mod_order_id)
+    - [739](mod_order_id)
+    - [212](mod_order_id)
+
+- regex: mod_order_id
+  examples: |
+    - \d{3}
+
+- intent: food
+  examples: |
+    - I like to eat [pizza](food)
+    - I like to eat [burger](food)
+    - I like to eat [pasta](food)
+    - I like to eat [chicken](food)
+    - I like to eat [beef](food)
+    - I like to eat [Burger](food)
+    - I like to eat [Burger sandwich](food)
+    - I like to eat [Pizza](food)
+    - I like to eat [Pasta](food)
+    - I like to eat [Chicken Burger](food)
+    - I like to eat [Beef](food)
+    - I would eat [cheese burger](food)
+   
+- intent: food_type
+  examples: |
+    - [Veggies](food_type)
+    - [Non-Veggies](food_type)
+    - [Vegan](food_type)
+    - [Vegetarian](food_type)
+    - [Halal](food_type)
+    - [non-vegetarian](food_type)
+    - [vegan](food_type)
+    - [vegetarian](food_type)
+    - [halal](food_type)
+    - [veggies](food_type)
+    - [veg](food_type)
+    - [non-veg](food_type)
+    
+
+- synonym: burgers
+  examples: |
+    - burger
+    - burger sandwich
+    - chicken burger
+    - beef burger
+    - cheese burger
+    - burger deluxe
+    - burger king
+    - burger queen
+    - burger prince
+- regex: otps
+  examples: |
+    - \d{6}
+- regex: phones
+  examples: |
+    - \d{11}
+
+
+# - regex: phone_number
+#   examples: |
+#     - \d{10,11}
+
+- intent: my_cuisine
+  examples: |
+    - [bangladeshi](cuisine)
+    - [mexican](cuisine)
+    - [jamaican](cuisine)
+    - [japanese](cuisine)
+    - [vietnamese](cuisine)
+    - [indian](cuisine)
+# entity er name dibo lookup er name to show in debugging stage
+- lookup: cuisine 
+  examples: |
+    - bangladeshi
+    - mexican
+    - jamaican
+    - japanese
+    - vietnamese
+    - indian
+    - chinese
+    - italian
+    - korean
+    - spanish
+    - french
+    - german
+    - british
+    - irish
+    - american
+    - african
+
+
+- intent: greet
+
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - No
+    - No thanks
+    
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: stop
+  examples: |
+    - Stop
+    - Enough
+    - I don't want to continue
+    - End
+    - Finish
+    - I want to stop
+    - Cancel
+    - Terminate
+    - I want to cancel
+    - Cancel this order
+
+- intent: modify_order
+  examples: |
+    - Sorry, I would like to change my order.
+    - Sorry, I would change the order
+    - I want to modify my order 
+    - I want to change my order
+    - Change
+    - Modify
+    - I want to change
+    - I want to modify
+    - Mistake
+    - I made a mistake
+
+- intent: field_modify
+  examples: |
+    - Name
+    - Email
+    - Phone
+    - Food
+    - Food type
+    - Cuisine
+
+- intent: request_food_story
+  examples: |
+    - I want to order food
+    - I want to order
+    - I want to order something
+    - I want to order food
+    - I want to order food
+    - I want to order
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+#the regex features are defined outside of the nlu key, each with a name and a pattern.

@@ -1,0 +1,60 @@
+version: "3.1"
+
+# stories:
+
+# - story: Food Order
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: request_food
+#   - action: utter_name
+#   - intent: name
+#     entities:
+#     - name: afraim
+#   - action: utter_email
+#   - intent: email
+#     entities:
+#     - email: dhurhaha777@gmail.com
+#   - action: utter_phone
+#   - intent: phone
+#     entities:
+#     - phone: 0184738473
+#   - action: utter_food
+#   - intent: foods
+#     entities:
+#     - foods: pizza
+#   - action: utter_type
+#   - intent: food_type
+#     entities:
+#     - food_type: veggie
+#   - action: utter_did_that_help
+
+# - story: Food story
+#   steps:
+#   - intent: greet
+#   - action: utter_greet_food
+#   - intent: request_food
+#   - action: food_form
+#   - active_loop: food_form
+
+- story: modify multiple slots
+  steps:
+  - intent: change_food
+  - action: modify_food_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: new_food
+  - action: utter_change_food
+  - intent: change_food_type
+  - action: modify_food_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: new_food_type
+  - action: utter_change_food_type
+  - intent: change_cuisine
+  - action: modify_food_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: new_cuisine
+  - action: utter_change_cuisine
+

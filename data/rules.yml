@@ -1,0 +1,105 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Activate food Form
+  steps:
+  - intent: request_food
+  - action: food_form
+  - active_loop: food_form
+
+- rule: Trigger food modification form
+  steps:
+  - intent: modify_order
+  - action: modify_food_form
+  - active_loop: modify_food_form
+
+
+- rule: Submit food form
+  condition:
+  - active_loop: food_form
+  steps:
+  - action: food_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_slots_values
+  - action: utter_sure
+  - or:
+    - intent: affirm
+    - intent: deny
+  # - action: utter_submit
+  - action: action_place_order
+
+- rule: Submit modify food form
+  condition:
+  - active_loop: modify_food_form
+  steps:
+  - action: modify_food_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_mod_slots_values
+  - action: utter_mod_sure
+  - or:
+    - intent: affirm
+    - intent: deny
+  - action: action_modify_order
+  - action: utter_mod_submit
+  # - action: utter_mod_sure
+  # - or:
+  #   - intent: affirm
+  #   - intent: deny
+
+
+- rule: Cancel food form
+  condition:
+  #loop ta still activbe
+  - active_loop: food_form
+  steps:
+  #user jokhon stop bole
+  - intent: stop
+  - action: utter_stop
+
+- rule: only food slot
+  condition:
+  - active_loop: modify_food_form
+  steps:
+  - intent: change_food
+  - action: modify_food_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: new_food
+  - action: utter_change_food
+
+- rule: only food type slot
+  condition:
+  - active_loop: modify_food_form
+  steps:
+  - intent: change_food_type
+  - action: modify_food_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: new_food_type
+  - action: utter_change_food_type
+
+- rule: only cuisine slot
+  condition:
+  - active_loop: modify_food_form
+  steps:
+  - intent: change_cuisine
+  - action: modify_food_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: new_cuisine
+  - action: utter_change_cuisine

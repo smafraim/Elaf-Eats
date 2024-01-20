@@ -1,0 +1,298 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - stop
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - name
+  - email
+  - enter_otp
+  - phone
+  - food
+  - food_type
+  - my_cuisine
+  - request_food
+  - request_food_story
+  - modify_order
+  - field_modify
+  - mymod_order_id
+
+entities:
+  - name
+  - email
+  - sys_otp
+  - user_otp
+  - phone
+  - otps
+  - phones
+  - food
+  - food_type
+  - cuisine
+  - order_id
+  - mod_order_id
+  - new_food_item
+  - new_food_type
+  - new_cuisine
+
+slots:
+  name: 
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: name
+  email:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: email
+
+  sys_otp:
+    type: text #just to store
+    initial_value: null
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  user_otp:
+    type: text #just to store
+    initial_value: null
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: otps
+
+  authenticated:  #authentication slot
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+      - type: custom
+      
+  phone:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: phones
+
+  food:
+    type: text
+    influence_conversation: true
+    mappings: 
+      - type: from_entity
+        entity: food
+  food_type:
+    type: text
+    influence_conversation: true  
+    mappings:   
+      - type: from_entity
+        entity: food_type
+  cuisine:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: cuisine
+
+  # order_placed:
+  #   type: bool
+  #   initial_value: false
+  #   influence_conversation: true
+  #   mappings:
+  #     - type: custom
+
+  order_id:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  mod_order_id:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: mod_order_id
+
+  new_food_item:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: food
+  new_food_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: food_type
+  new_cuisine:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: cuisine
+#For the 'otp' slot, i sohould use the 'from_text' mapping because OTP is usually a unique number 
+#and it's unlikely that to havbe a specific entity for it in your NLU data.
+forms:
+  food_form:
+    required_slots:
+      - name
+      - email
+      - sys_otp
+      - user_otp
+      - phone
+      - food
+      - food_type
+      - cuisine
+      - order_id
+  
+  modify_food_form:
+    required_slots:
+      - mod_order_id
+      - new_food_item
+      - new_food_type
+      - new_cuisine
+
+
+
+responses:
+
+  utter_greet:
+  - text: "Hey! How are you?"
+  utter_greet_food:
+  - text : "Alright! Spare a sec to fill in the details, please?"
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_name:
+  - text: "Alright! Spare a sec to fill in the details, please? What is your name?"
+
+  utter_ask_email:
+  - text: "What is your email?"
+ 
+  utter_ask_otp:
+  - text: "Please enter the OTP sent to your email"
+
+  utter_ask_phone:
+  - text: "What is your phone number?"
+
+  utter_ask_food:
+  - text: "What would you like to eat?"
+
+  utter_ask_food_type:
+  - text: "What food type would you like to eat?"
+
+  utter_ask_cuisine:
+  - text: "What cuisine would you like to eat?"
+
+  utter_ask_mod_order_id:
+  - text: "So, what is your order id?"
+
+  utter_ask_new_food_item:
+  - text: "What would you like to eat?"
+
+  utter_ask_new_food_type:
+  - text: "What food type would you like to eat?"
+
+  utter_ask_new_cuisine:
+  - text: "What cuisine would you like to eat?"
+
+  utter_thanks:
+  - text: "Thank you for your order!"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_slots_values:
+  - text: "Great, I have your name as {name}, your email as {email}, your phone number as {phone}, you would like to eat {cuisine} {food} and you would like to have as {food_type} for that {food}"
+
+  utter_sure:
+  - text: "Is everything correct?"
+    buttons:
+    - title: "Yes"
+      payload: "/affirm"
+    - title: "No"
+      payload: "/deny"
+
+  utter_mod_slots_values:
+  - text: "Great, I have your order id as {mod_order_id}, your new food item as {new_food_item}, your new food type as {new_food_type} and your new cuisine as {new_cuisine}"
+
+  utter_mod_sure:
+  - text: "Is everything correct?"
+    buttons:
+    - title: "Yes"
+      payload: "/affirm"
+    - title: "No"
+      payload: "/deny"
+
+  utter_mod_submit:
+  - text: "I'm making sure of this again. I'm modifying your order #{mod_order_id} to a {new_cuisine} {new_food_type} {new_food_item} for you. Your order #{mod_order_id} will be delivered to you in 30 minutes. Thank you for your order!"
+
+  utter_stop:
+  - text: "Ok, I have cancelled your order"
+
+  utter_modify:
+  - text: "What would you like to change? Please, make sure you enter the correct option"
+    buttons:
+    - title: "Name"
+      payload: "/name"
+    - title: "Email"
+      payload: "/email"
+    - title: "Phone"
+      payload: "/phone"
+    - title: "Food"
+      payload: "/food"
+    - title: "Food Type"
+      payload: "/food_type"
+    - title: "Cuisine"
+      payload: "/my_cuisine"
+
+  utter_submit:
+  - text: "Ok, Im ordering a {cuisine} {food_type} {food} for you. Your order #{order_id} will be delivered to you in 30 minutes. Thank you for your order!"
+  
+actions:
+- utter_submit
+- validate_food_form
+- utter_ask_name
+- utter_ask_email
+- utter_ask_otp
+- utter_ask_phone
+- utter_ask_food
+- utter_ask_food_type
+- utter_ask_cuisine
+- validate_modify_food_form
+# - action_modify_food_form
+- action_place_order
+- action_modify_order
+- utter_ask_mod_order_id
+- utter_ask_new_food_item
+- utter_ask_new_food_type
+- utter_ask_new_cuisine
+# - action_handle_modification
+# - action_send_otp
+# - action_verify_otp
+# - action_greet_authenticated_user
+# - action_wrong_password
+    
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
